@@ -50,6 +50,13 @@ public class Passenger {
 		this.age = age;
 	}
 	
+	public String toString(){
+		return "Name of Passenger: "+this.getName() +"	Address of Passenger: "+ this.getAddress()+
+				"	Age of Passenger: " + this.getAge();
+		
+		
+	}
+	
 	
 
 }

@@ -1,0 +1,3 @@
+Passenger p1 = new Passenger("Virgil Alkalawa", "17th Street, Bronx, New York City, United States of America", 28);
+
+System.out.println(p1.getAge());
