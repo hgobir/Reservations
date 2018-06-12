@@ -29,8 +29,7 @@ public class Seat {
 	
 	
 	public String toString(){
-		//TODO implement this!
-		return null;
+		return "Seat Number: "+this.getSeatNumber();
 	}
 	
 

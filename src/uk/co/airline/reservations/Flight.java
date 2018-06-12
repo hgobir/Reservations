@@ -67,8 +67,8 @@ public class Flight {
 		this.arrivalTime = arrivalTime;
 	}
 	public String toString(){
-		//TODO implement this!
-		return null;
+		return "Departure City: "+this.departureCity + "Arrival City: "+ this.getArrivalCity() 
+		+ "Price of Flight" + this.getPrice() + "Flight Number: "+this.getFlightNumber();
 		
 		
 	}
