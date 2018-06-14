@@ -60,7 +60,28 @@ public class DatabaseTest {
 		db1.addTicket(t1);
 		assertEquals(1, db1.getTickets().size());
 		assertEquals(s1, db1.getTickets().get(0).getSeat());
-
 	}
+	
+	@Test
+	public void testBootstrapSeatsMethod() {
+		BoeingPlane p1 = new BoeingPlane();
+		db1.bootstrapSeats(p1, 5);
+		
+		assertEquals(5, db1.getSeats().size());
+		assertEquals(5, p1.getSeatingPlan().size());
+		assertEquals(SeatLevel.PREMIUM_ECONOMY_CLASS, p1.getSeatingPlan().get(0).getSeatLevel());
+	}
+	
+	@Test
+	public void testBootstrapFlightsMethod() {
+		db1.bootstrapFlights(10);
+		
+		assertEquals(10, db1.getFlights().size());
+		assertEquals("Unknown Arrival City", db1.getFlights().get(0).getArrivalCity());
+		assertEquals(2000, db1.getFlights().get(2).getFlightNumber());
+	}
+	
+	
+	
 
 }

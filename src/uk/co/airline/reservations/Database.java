@@ -48,6 +48,26 @@ public class Database {
 		tickets.add(ticket);
 	}
 	
+	public void bootstrapSeats(Plane p1, int x){
+		for(int count = 0; count < x; count++){		
+			seats.add(new Seat(count, SeatLevel.PREMIUM_ECONOMY_CLASS));
+		}
+		 p1.setSeatingPlan(seats);
+	}
+	
+	public void bootstrapFlights(int x){
+			
+		for(int count = 0; count < x; count++){
+			
+			String stringCount = Integer.toString(count);
+			String stringFlightNumber = stringCount.concat("000");
+			String stringPrice = stringCount.concat("99.99");
+			
+			flights.add(new Flight("Unknown Departure City", 
+					"Unknown Arrival City", Integer.parseInt(stringFlightNumber), Double.parseDouble(stringPrice)));
+		}
+	}
+	
 	
 	
 	

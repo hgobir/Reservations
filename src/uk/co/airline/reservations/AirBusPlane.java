@@ -1,8 +1,12 @@
 package uk.co.airline.reservations;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class AirBusPlane implements Plane {
+	
+	private ArrayList<Seat> seatingPlan = new ArrayList<Seat>();
+	boolean inFlight = false;
 
 	@Override
 	public boolean fly() {
@@ -15,5 +19,15 @@ public class AirBusPlane implements Plane {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ArrayList<Seat> getSeatingPlan() {
+		return seatingPlan;
+	}
+
+	public void setSeatingPlan(ArrayList<Seat> seatingPlan) {
+		this.seatingPlan = seatingPlan;
+	}
+	
+	
 
 }
