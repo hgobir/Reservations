@@ -12,6 +12,14 @@ public class Ticket {
 	public Ticket(){
 		departureDate = LocalDate.now();
 	}
+	
+	public Ticket(Seat seat, Flight flight, Passenger passenger){
+		departureDate = LocalDate.now();
+		this.seat = seat;
+		this.flight = flight;
+		this.passenger = passenger;
+		
+	}
 
 	public LocalDate getDepartureDate() {
 		return departureDate;
