@@ -1,5 +1,6 @@
 package uk.co.airline.reservations;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
@@ -36,17 +37,88 @@ public class Database {
 		seats.add(seat);
 	}
 	
-	public void addPassenger(Passenger passenger){
-		passengers.add(passenger);
+	public boolean addPassenger(Passenger passenger){		
+		boolean passengerInDatabse  = false;		
+		for(Passenger p: passengers){		
+			if(p.getName().equals(passenger.getName())){		
+				passengerInDatabse = true;			
+			}
+		} if(passengerInDatabse == false){
+			passengers.add(passenger);
+		}
+		return passengerInDatabse;
 	}
 	
 	public void addFlight(Flight flight){
 		flights.add(flight);
 	}
 	
-	public void addTicket(Ticket ticket){
-		tickets.add(ticket);
+	public ArrayList<Seat> getOpenSeats(LocalDate departureDate, int flightNumber){
+		
+		ArrayList<Seat> openSeats = getSeats();
+		
+		for(Ticket item: tickets){
+			
+			if(item.getDepartureDate().equals(departureDate)&& 
+					item.getFlight().getFlightNumber() == flightNumber){
+				
+				openSeats.remove(item.getSeat());
+			}
+			
+		}
+				
+				
+			return openSeats;		
 	}
+	
+	public void addTicket(Ticket t1){
+		
+		tickets.add(t1);
+		
+	}
+	
+	
+	public String purchaseTicket(LocalDate departureDate, Passenger p, int flightNumber, int seatNumber){
+		
+		Passenger passengerOnTicket = null;
+	
+		if(passengers.size() == 0){		
+			passengers.add(p);		
+			passengerOnTicket = p;
+		}
+		
+		for(Passenger passengerItem: passengers){		
+			if(!p.getName().equals(passengerItem.getName())){		
+				passengers.add(p);
+				passengerOnTicket = p;			
+			}		
+		}
+			
+		Flight flightOnTicket = null;
+			
+		for(Flight flightItem: flights){
+			if(flightItem.getFlightNumber() != flightNumber){	
+				flightOnTicket = flightItem;			
+			}	
+		}	
+		Seat seatOnTicket = null;
+			
+		for(Seat seatItem: seats){
+				if(seatItem.getSeatNumber() != seatNumber){		
+					seatOnTicket = seatItem;			
+				}
+			}
+		Ticket ticketInDatabase = new Ticket(seatOnTicket, flightOnTicket , passengerOnTicket);
+		
+		ticketInDatabase.setDepartureDate(departureDate);
+		
+		tickets.add(ticketInDatabase);
+		
+		return ticketInDatabase.toString();
+			
+			
+		}	
+	
 	
 	public void bootstrapSeats(Plane p1, int x){
 		for(int count = 0; count < x; count++){		
@@ -54,6 +126,8 @@ public class Database {
 		}
 		 p1.setSeatingPlan(seats);
 	}
+	
+	
 	
 	public void bootstrapFlights(int x){
 			
@@ -64,7 +138,8 @@ public class Database {
 			String stringPrice = stringCount.concat("99.99");
 			
 			flights.add(new Flight("Unknown Departure City", 
-					"Unknown Arrival City", Integer.parseInt(stringFlightNumber), Double.parseDouble(stringPrice)));
+					"Unknown Arrival City", Integer.parseInt(stringFlightNumber), 
+					Double.parseDouble(stringPrice)));
 		}
 	}
 	

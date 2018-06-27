@@ -1,3 +1,7 @@
-Passenger p1 = new Passenger("Virgil Alkalawa", "17th Street, Bronx, New York City, United States of America", 28);
-
-System.out.println(p1.getAge());
+Database db = new Database();
+db.bootstrapFlights(50);
+db.bootstrapSeats(new Boeing, 30);
+Passenger p1 = new Passenger()
+db.addPassenger(p1); (No explicit return value)
+String booking = db.addTicket(LocalDate.of(2018, 08, 25), "Joseph Skinner", 1000, 3);
+booking cannot be resolved to a variableSystem.out.println(booking);

@@ -53,6 +53,12 @@ public class Ticket {
 		this.passenger = passenger;
 	}
 	
+	public String toString(){
+		return "Name of Passenger on Ticket: "+ passenger.getName() +"	"
+				+ "This Passenger has booked the : "+ seat.getSeatNumber()
+				+ "seat" +" At :"+ departureDate +"leaving from "+ flight.getDepartureCity() + "travelling to "+flight.getArrivalCity();	
+	}
+	
 	
 	
 	

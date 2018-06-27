@@ -53,8 +53,7 @@ public class Passenger {
 	public String toString(){
 		return "Name of Passenger: "+this.getName() +"	Address of Passenger: "+ this.getAddress()+
 				"	Age of Passenger: " + this.getAge();
-		
-		
+	
 	}
 	
 	
