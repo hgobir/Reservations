@@ -37,8 +37,16 @@ public class Database {
 		seats.add(seat);
 	}
 	
-	public boolean addPassenger(Passenger passenger){		
-		boolean passengerInDatabse  = false;		
+	public boolean addPassenger(Passenger passenger){
+		
+		boolean passengerInDatabse  = false;
+		
+		if(passengers.size() == 0){
+			
+			passengers.add(passenger);
+			
+		}
+		
 		for(Passenger p: passengers){		
 			if(p.getName().equals(passenger.getName())){		
 				passengerInDatabse = true;			
@@ -63,18 +71,15 @@ public class Database {
 					item.getFlight().getFlightNumber() == flightNumber){
 				
 				openSeats.remove(item.getSeat());
-			}
-			
-		}
-				
-				
+			}		
+		}		
 			return openSeats;		
 	}
 	
 	public void addTicket(Ticket t1){
 		
 		tickets.add(t1);
-		
+		 
 	}
 	
 	
@@ -85,26 +90,28 @@ public class Database {
 		if(passengers.size() == 0){		
 			passengers.add(p);		
 			passengerOnTicket = p;
-		}
+			
+		} else if(passengers.size() > 0){
 		
 		for(Passenger passengerItem: passengers){		
 			if(!p.getName().equals(passengerItem.getName())){		
 				passengers.add(p);
 				passengerOnTicket = p;			
-			}		
+			}
+		}
 		}
 			
 		Flight flightOnTicket = null;
 			
 		for(Flight flightItem: flights){
-			if(flightItem.getFlightNumber() != flightNumber){	
+			if(flightItem.getFlightNumber() == flightNumber){	
 				flightOnTicket = flightItem;			
 			}	
 		}	
 		Seat seatOnTicket = null;
 			
 		for(Seat seatItem: seats){
-				if(seatItem.getSeatNumber() != seatNumber){		
+				if(seatItem.getSeatNumber() == seatNumber){		
 					seatOnTicket = seatItem;			
 				}
 			}
@@ -120,11 +127,11 @@ public class Database {
 		}	
 	
 	
-	public void bootstrapSeats(Plane p1, int x){
+	public void bootstrapSeats(int x){
 		for(int count = 0; count < x; count++){		
 			seats.add(new Seat(count, SeatLevel.PREMIUM_ECONOMY_CLASS));
 		}
-		 p1.setSeatingPlan(seats);
+
 	}
 	
 	

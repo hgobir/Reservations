@@ -54,9 +54,9 @@ public class Ticket {
 	}
 	
 	public String toString(){
-		return "Name of Passenger on Ticket: "+ passenger.getName() +"	"
-				+ "This Passenger has booked the : "+ seat.getSeatNumber()
-				+ "seat" +" At :"+ departureDate +"leaving from "+ flight.getDepartureCity() + "travelling to "+flight.getArrivalCity();	
+		return "Name of Passenger on Ticket: "+ passenger.getName() +'\r'
+				+ "Seat Booked on Ticket: "+ seat.getSeatNumber() +'\r'
+				+"Flight Information on Ticket: "+"Flight booked for "+ departureDate +" leaving from "+ flight.getDepartureCity() + " travelling to "+flight.getArrivalCity();	
 	}
 	
 	
