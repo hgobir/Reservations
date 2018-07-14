@@ -48,11 +48,9 @@ public class DatabaseTest {
 	@Test
 	public void testThatDuplicatedPassengerIsNotAddedToDatabase() {
 		Passenger p1 = new Passenger("Jason Thanni", "Camden", 25);
-		assertEquals(false, db1.addPassenger(p1));
-		assertEquals(1, db1.getPassengers().size());
+		assertFalse(db1.addPassenger(p1));
 		Passenger p2 = new Passenger("Jason Thanni", "Camden", 25);
-		assertEquals(true, db1.addPassenger(p2));
-		assertEquals(1, db1.getPassengers().size());
+		assertTrue(db1.addPassenger(p2));
 	}
 	
 	
@@ -78,32 +76,31 @@ public class DatabaseTest {
 	
 	@Test
 	public void testBootstrapSeatsMethod() {
-		BoeingPlane b1 = new BoeingPlane();
-		db1.bootstrapSeats(b1, 5);
+		db1.bootstrap(5);
 		
 		assertEquals(5, db1.getSeats().size());
-		assertEquals(5, b1.getSeatingPlan().size());
-		assertEquals(SeatLevel.PREMIUM_ECONOMY_CLASS, b1.getSeatingPlan().get(0).getSeatLevel());
+
 	}
 	
 	@Test
 	public void testBootstrapFlightsMethod() {
-		db1.bootstrapFlights(10);
+		db1.bootstrap(10);
 		
 		assertEquals(10, db1.getFlights().size());
 		assertEquals("Unknown Arrival City", db1.getFlights().get(0).getArrivalCity());
-		assertEquals(2000, db1.getFlights().get(2).getFlightNumber());
+
 	}
 	
 	@Test
-	public void testPurchaseTicketMethodCreatesTicket() {
+	public void testAddTicketMethodCreatesTicket() {
 		Seat s1 = new Seat(1, SeatLevel.BUSINESS_CLASS);
+		db1.addSeat(s1);
 		Passenger p1 = new Passenger("Jason Thanni", "Camden", 25);
+		db1.addPassenger(p1);
 		Flight f1 = new Flight("London", "Paris", 500, 999.99);
-		BoeingPlane b1 = new BoeingPlane();
-		db1.bootstrapSeats(b1, 5);
-		db1.bootstrapFlights(10);
-		db1.purchaseTicket(LocalDate.now(), p1, f1.getFlightNumber(),s1.getSeatNumber());
+		db1.addFlight(f1);
+
+		db1.addTicket(LocalDate.now(), p1, f1.getFlightNumber(),s1.getSeatNumber());
 			
 		assertEquals(1, db1.getTickets().size());
 	}

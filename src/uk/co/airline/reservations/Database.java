@@ -41,18 +41,19 @@ public class Database {
 		
 		boolean passengerInDatabse  = false;
 		
-		if(passengers.size() == 0){
-			
-			passengers.add(passenger);
-			
-		}
+//		if(getPassengers().size() == 0){
+//			
+//			getPassengers().add(passenger);
+//			
+//		}
 		
-		for(Passenger p: passengers){		
-			if(p.getName().equals(passenger.getName())){		
+		for(Passenger passengerItem: getPassengers()){
+			
+			if(passengerItem.getName().equals(passenger.getName())){		
 				passengerInDatabse = true;			
 			}
 		} if(passengerInDatabse == false){
-			passengers.add(passenger);
+			getPassengers().add(passenger);
 		}
 		return passengerInDatabse;
 	}
@@ -83,34 +84,34 @@ public class Database {
 	}
 	
 	
-	public String purchaseTicket(LocalDate departureDate, Passenger p, int flightNumber, int seatNumber){
+	public String addTicket(LocalDate departureDate, Passenger p, int flightNumber, int seatNumber){
 		
 		Passenger passengerOnTicket = null;
-	
-		if(passengers.size() == 0){		
-			passengers.add(p);		
-			passengerOnTicket = p;
-			
-		} else if(passengers.size() > 0){
-		
-		for(Passenger passengerItem: passengers){		
-			if(!p.getName().equals(passengerItem.getName())){		
-				passengers.add(p);
-				passengerOnTicket = p;			
+//	
+//		if(getPassengers().size() == 0){		
+//			getPassengers().add(p);		
+//			passengerOnTicket = p;
+//			
+//		} else if(getPassengers().size() > 0){
+//		
+		for(Passenger passengerItem: getPassengers()){		
+			if(p.getName().equals(passengerItem.getName())){		
+//				getPassengers().add(p);
+				passengerOnTicket = passengerItem;			
 			}
 		}
-		}
+		
 			
 		Flight flightOnTicket = null;
 			
-		for(Flight flightItem: flights){
+		for(Flight flightItem : getFlights()){
 			if(flightItem.getFlightNumber() == flightNumber){	
 				flightOnTicket = flightItem;			
 			}	
 		}	
 		Seat seatOnTicket = null;
 			
-		for(Seat seatItem: seats){
+		for(Seat seatItem: getSeats()){
 				if(seatItem.getSeatNumber() == seatNumber){		
 					seatOnTicket = seatItem;			
 				}
@@ -127,38 +128,23 @@ public class Database {
 		}	
 	
 	
-	public void bootstrapSeats(int x){
+	public void bootstrap(int x){
 		for(int count = 0; count < x; count++){		
 			seats.add(new Seat(count, SeatLevel.PREMIUM_ECONOMY_CLASS));
 		}
-
-	}
-	
-	
-	
-	public void bootstrapFlights(int x){
-			
-		for(int count = 0; count < x; count++){
-			
-			String stringCount = Integer.toString(count);
-			String stringFlightNumber = stringCount.concat("000");
-			String stringPrice = stringCount.concat("99.99");
-			
-			flights.add(new Flight("Unknown Departure City", 
-					"Unknown Arrival City", Integer.parseInt(stringFlightNumber), 
-					Double.parseDouble(stringPrice)));
+		
+		for(int count = 0; count < x; count++){	
+		
+		String stringCount = Integer.toString(count);
+		String stringFlightNumber = stringCount.concat("000");
+		String stringPrice = stringCount.concat("99.99");
+		
+		flights.add(new Flight("Unknown Departure City", 
+				"Unknown Arrival City", Integer.parseInt(stringFlightNumber), 
+				Double.parseDouble(stringPrice)));
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
 	
 
 }

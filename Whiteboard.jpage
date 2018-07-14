@@ -1,7 +1,7 @@
-Database db = new Database();
+Database db = new Database();
 db.bootstrapFlights(50);
 db.bootstrapSeats(new Boeing, 30);
-Passenger p1 = new Passenger()
-db.addPassenger(p1); (No explicit return value)
-String booking = db.addTicket(LocalDate.of(2018, 08, 25), "Joseph Skinner", 1000, 3);
-booking cannot be resolved to a variableSystem.out.println(booking);
+Passenger p1 = new Passenger()p1.setAddress("Nowhere");p1.setAge(25);p1.setName("Arnold");
+db.addPassenger(p1);
+String booking = db.purchaseTicket(LocalDate.of(2018, 08, 25), "Joseph Skinner", 1000, 3));
+System.out.println(booking);
