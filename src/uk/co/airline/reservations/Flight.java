@@ -11,6 +11,9 @@ public class Flight {
 	private LocalDate arrivalTime;
 	private int flightNumber;
 	private double price;
+	
+	public Flight(){
+	}
 
 	public Flight(String departureCity, String arrivalCity, int flightNumber, double price) {
 		this.departureCity = departureCity;
@@ -68,9 +71,7 @@ public class Flight {
 	}
 	public String toString(){
 		return "Departure City: "+this.departureCity + " | Arrival City: "+ this.getArrivalCity() 
-		+ " | Price of Flight: " + this.getPrice() + " | Flight Number: "+this.getFlightNumber();
-		
-		
+		+ " | Price of Flight: " + this.getPrice() + " | Flight Number: "+this.getFlightNumber();	
 	}
 	
 	
