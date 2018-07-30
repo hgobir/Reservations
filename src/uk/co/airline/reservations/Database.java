@@ -56,6 +56,7 @@ public class Database {
 		databaseLogger.addHandler(logScreen);
 		databaseLogger.setLevel(Level.FINE);
 		logScreen.setLevel(Level.FINEST);
+		databaseLogger.setUseParentHandlers(false);
 	}
 	
 	public boolean addPassenger(Passenger passenger){
