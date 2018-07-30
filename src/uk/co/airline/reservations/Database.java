@@ -1,14 +1,28 @@
 package uk.co.airline.reservations;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+//make subclass of database and create flights.csv file - read for file by overriding bootstrap method
 public class Database {
 
 	private ArrayList<Seat> seats;
 	private ArrayList<Passenger> passengers;
 	private ArrayList<Flight> flights;
 	private ArrayList<Ticket> tickets;
+	
+	private static Logger databaseLogger = Logger.getLogger(Database.class.getName());
+	private static ConsoleHandler logScreen = new ConsoleHandler();
+	
 
 	public Database() {
 		seats = new ArrayList<Seat>();
@@ -35,6 +49,13 @@ public class Database {
 	
 	public void addSeat(Seat seat){
 		seats.add(seat);
+	}
+	
+	public void setLogging(){
+		
+		databaseLogger.addHandler(logScreen);
+		databaseLogger.setLevel(Level.FINE);
+		logScreen.setLevel(Level.FINEST);
 	}
 	
 	public boolean addPassenger(Passenger passenger){
@@ -122,6 +143,8 @@ public class Database {
 		
 		tickets.add(ticketInDatabase);
 		
+		databaseLogger.info("ticket created!");
+		
 		return ticketInDatabase.toString();
 			
 			
@@ -144,6 +167,51 @@ public class Database {
 				Double.parseDouble(stringPrice)));
 		}
 	}
+	//make subclass of db class (inheritence) override this method in subclass 
+	//split each line up and store into fields in application??
+	public void bootstrapCSV(){
+		try {
+			BufferedReader flightFile = new BufferedReader(new FileReader("C:\\Users\\Hamza\\workspace\\Reservations\\import\\destinations.csv"));
+			String flightLine;
+			while((flightLine = flightFile.readLine()) != null){
+				//split lines into parts and assign to field in flight object
+				System.out.println(flightLine);
+			}
+			flightFile.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void exportSeats(){
+		try {
+			BufferedWriter seatFile = new BufferedWriter(new FileWriter("C:\\Users\\Hamza\\workspace\\Reservations\\export\\seatsExport.csv"));
+			for(Seat item: getSeats()){
+				seatFile.write(item.toString() + "\n");				
+			}			
+			seatFile.close();
+			System.out.println("Export file created");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 

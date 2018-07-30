@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Console {
 
@@ -14,6 +15,8 @@ public class Console {
 		Database db = new Database();
 
 		db.bootstrap(5);
+		
+		db.setLogging();
 
 		// Scanner sc = new Scanner(System.in);
 
@@ -144,8 +147,8 @@ public class Console {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NumberFormatException n) {
-				// TODO Auto-generated catch block
-				System.out.println("\nInvalid Input");
+				Logger.getGlobal().warning("Flight number must be interger!");
+//				System.out.println("\nInvalid Input");
 			}
 			
 //			System.out.println("\n" + db.getOpenSeats(LocalDate.now(), flightChoice));
