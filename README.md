@@ -2,8 +2,6 @@
 simple airline reservation application
 
 
-THIS IS MY FIRST SOLO PROJECT UPLOADED ONTO GITHUB
-
-PLEASE FORGIVE ITS SIMPLICITY
+First solo project
 
 author: Hamza Gobir
